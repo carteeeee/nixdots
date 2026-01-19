@@ -1,0 +1,26 @@
+{inputs, ...}: {
+  users.users.carter = {
+    isNormalUser = true;
+    extraGroups = ["wheel" "networkmanager"];
+    initialPassword = "password";
+  };
+  users.groups.carter = {};
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    
+
+    users.carter = {config, ...}: {
+      home = {
+        username = "carter";
+        homeDirectory = "/home/${config.home.username}";
+      };
+
+      imports = [
+        inputs.catppuccin.homeModules.catppuccin
+        ./home
+      ];
+    };
+  };
+}
