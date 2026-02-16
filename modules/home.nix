@@ -19,7 +19,6 @@
       };
 
       imports = [
-        inputs.noctalia.homeModules.default
         inputs.catppuccin.homeModules.catppuccin
         ./home
       ];

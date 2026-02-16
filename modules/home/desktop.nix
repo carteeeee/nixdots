@@ -34,19 +34,19 @@ in {
     layout {
       focus-ring {
         on
-	width 3
-	active-color "#cba6f7"
-	inactive-color "#cba6f7"
-	urgent-color "#f2cdcd"
+        width 3
+        active-color "#cba6f7"
+        inactive-color "#cba6f7"
+        urgent-color "#f2cdcd"
       }
 
       shadow {
         on
-	softness 0
-	spread 0
-	offset x=6 y=6
-	draw-behind-window true
-	color "#3132447f"
+        softness 0
+        spread 0
+        offset x=6 y=6
+        draw-behind-window true
+        color "#3132447f"
       }
     }
 

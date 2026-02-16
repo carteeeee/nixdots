@@ -7,6 +7,7 @@
       enable = true;
       interactiveShellInit = ''
         set fish_greeting
+        echo "hello :3"
 	hyfetch
       '';
     };
