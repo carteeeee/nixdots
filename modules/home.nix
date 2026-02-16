@@ -1,15 +1,16 @@
-{inputs, ...}: {
+{inputs, pkgs, ...}: {
   users.users.carter = {
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"];
     initialPassword = "password";
+    shell = pkgs.fish;
   };
   users.groups.carter = {};
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    
+    backupFileExtension = ".old";
 
     users.carter = {config, ...}: {
       home = {
@@ -18,6 +19,7 @@
       };
 
       imports = [
+        inputs.noctalia.homeModules.default
         inputs.catppuccin.homeModules.catppuccin
         ./home
       ];

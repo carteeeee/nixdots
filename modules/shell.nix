@@ -7,6 +7,7 @@
     git
     gh
     tree
+    killall
     fastfetch
     hyfetch
   ];

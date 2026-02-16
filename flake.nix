@@ -6,6 +6,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     catppuccin.url = "github:catppuccin/nix";
   };
@@ -15,6 +20,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         inputs.home-manager.nixosModules.home-manager
+	inputs.noctalia.nixosModules.default
 	inputs.catppuccin.nixosModules.catppuccin
         ./hosts/bean.nix
 	./modules
