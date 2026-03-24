@@ -1,8 +1,9 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./desktop.nix
     ./shell.nix
     ./home.nix
+    ./dev.nix
   ];
   config = {
     nix.settings = {
@@ -21,5 +22,28 @@
 
     catppuccin.enable = true;
     catppuccin.accent = "mauve";
+
+    # doesn't work :(
+    catppuccin.plymouth.enable = false;
+    boot = {
+      initrd.systemd.enable = true;
+      initrd.verbose = false;
+      loader.timeout = 0;
+
+      plymouth = {
+        enable = true;
+        theme = "blahaj";
+        themePackages = with pkgs; [
+          plymouth-blahaj-theme
+        ];
+      };
+
+      consoleLogLevel = 3;
+      kernelParams = [
+        "quiet"
+        "loglevel=3"
+        "systemd.show_status=auto"
+      ];
+    };
   };
 }

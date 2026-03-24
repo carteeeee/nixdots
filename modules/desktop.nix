@@ -1,4 +1,19 @@
 {pkgs, lib, ...}: {
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  programs.niri.enable = true;
+  programs.firefox.enable = true;
+  
+  fonts.packages = with pkgs; [
+    nerd-fonts._0xproto
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+  ];
+
   services.pulseaudio.enable = lib.mkForce false;
 
   security.rtkit.enable = true;
@@ -10,13 +25,12 @@
     jack.enable = true;
   };
 
-  services.displayManager.sddm = {
+  services.sunshine = {
     enable = true;
-    wayland.enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
   };
-
-  programs.niri.enable = true;
-  programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite

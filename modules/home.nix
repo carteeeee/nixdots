@@ -19,6 +19,7 @@
       };
 
       imports = [
+	inputs.nixvim.homeModules.nixvim
         inputs.catppuccin.homeModules.catppuccin
         ./home
       ];

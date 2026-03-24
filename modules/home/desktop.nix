@@ -3,12 +3,19 @@
 in {
   programs.fuzzel.enable = true;
   programs.swaylock.enable = true;
-  programs.alacritty.enable = true;
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      font = {
+        normal.family = "0xProto Nerd Font";
+      };
+    };
+  };
 
   programs.obs-studio.enable = true;
 
   services.swww.enable = true;
-
+  services.playerctld.enable = true;
   services.swayosd = {
     enable = true;
     topMargin = 0.9;
@@ -16,6 +23,7 @@ in {
 
   xdg.configFile."niri/config.kdl".text = let
     swayosdc = getExe' pkgs.swayosd "swayosd-client";
+    playerctl = getExe pkgs.playerctl;
     xwayland-satellite = getExe pkgs.xwayland-satellite;
   in ''
     input {
@@ -63,9 +71,13 @@ in {
     binds {
       Mod+T       { spawn "alacritty"; }
       Mod+W       { spawn "firefox"; }
+      Mod+S       { spawn "vesktop"; }
       Mod+D       { spawn "fuzzel"; }
       Super+Alt+L { spawn "swaylock"; }
-      Mod+F10     { spawn-sh "${swayosdc} --output-volume mute-toggle"; }
+      Mod+F7      { spawn-sh "${playerctl} play-pause"; }
+      Mod+F8      { spawn-sh "${swayosdc} --output-volume mute-toggle"; }
+      Mod+F9      { spawn-sh "${playerctl} previous"; }
+      Mod+F10     { spawn-sh "${playerctl} next"; }
       Mod+F11     { spawn-sh "${swayosdc} --output-volume -3"; }
       Mod+F12     { spawn-sh "${swayosdc} --output-volume 3"; }
 
