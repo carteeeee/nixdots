@@ -69,17 +69,21 @@ in {
     }
 
     binds {
-      Mod+T       { spawn "alacritty"; }
-      Mod+W       { spawn "firefox"; }
-      Mod+S       { spawn "vesktop"; }
-      Mod+D       { spawn "fuzzel"; }
-      Super+Alt+L { spawn "swaylock"; }
-      Mod+F7      { spawn-sh "${playerctl} play-pause"; }
-      Mod+F8      { spawn-sh "${swayosdc} --output-volume mute-toggle"; }
-      Mod+F9      { spawn-sh "${playerctl} previous"; }
-      Mod+F10     { spawn-sh "${playerctl} next"; }
-      Mod+F11     { spawn-sh "${swayosdc} --output-volume -3"; }
-      Mod+F12     { spawn-sh "${swayosdc} --output-volume 3"; }
+      Mod+T     { spawn "alacritty"; }
+      Mod+W     { spawn "firefox"; }
+      Mod+S     { spawn "vesktop"; }
+      Mod+D     { spawn "fuzzel"; }
+      Mod+Alt+L { spawn "swaylock"; }
+      Mod+F7    { spawn-sh "${playerctl} play-pause"; }
+      Mod+F8    { spawn-sh "${swayosdc} --output-volume mute-toggle"; }
+      Mod+F9    { spawn-sh "${playerctl} previous"; }
+      Mod+F10   { spawn-sh "${playerctl} next"; }
+      Mod+F11   { spawn-sh "${swayosdc} --output-volume -3"; }
+      Mod+F12   { spawn-sh "${swayosdc} --output-volume 3"; }
+
+      // easy to press intentionally, but hard accidentally
+      // (next is page down)
+      Mod+Shift+Alt+Next { spawn "poweroff"; }
 
       // (most) defaults
       Mod+Shift+Slash { show-hotkey-overlay; }
