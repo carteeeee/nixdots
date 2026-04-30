@@ -38,6 +38,9 @@
     swayosd
     vesktop
 
+    wine64
+    wineWow64Packages.waylandFull
+
     (prismlauncher.override {
       jdks = [
         zulu

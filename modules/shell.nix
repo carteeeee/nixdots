@@ -11,15 +11,13 @@
   programs.neovim.enable = true;
 
   environment.systemPackages = with pkgs; [
-    git
-    gh
-    gcc
-    gnumake
-    cargo-cross
     cloudflared
-    tree
-    killall
     fastfetch
+    gh
+    git
     hyfetch
+    killall
+    tree
+    unzip
   ];
 }
