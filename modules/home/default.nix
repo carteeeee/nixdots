@@ -2,7 +2,7 @@
   imports = [
     ./desktop.nix
     ./dev.nix
-    ./moonlight.nix
+    #./moonlight.nix
   ];
   config = {
     catppuccin.enable = true;

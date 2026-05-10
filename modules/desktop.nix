@@ -25,12 +25,38 @@
     jack.enable = true;
   };
 
-  services.sunshine = {
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      cups-filters
+      cups-browsed
+    ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "HP174C9E";
+        location = "home";
+        deviceUri = "ipp://192.168.1.173:631/ipp/print";
+        model = "everywhere";
+      }
+    ];
+    ensureDefaultPrinter = "HP174C9E";
+  };
+
+  /*services.sunshine = {
     enable = true;
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
-  };
+  };*/
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite
