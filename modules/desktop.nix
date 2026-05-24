@@ -59,7 +59,7 @@
   };*/
 
   environment.systemPackages = with pkgs; [
-    fontforge
+    fontforge-gtk
     pwvucontrol
     swayosd
     vesktop
