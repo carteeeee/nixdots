@@ -13,8 +13,9 @@ in {
   };
 
   programs.obs-studio.enable = true;
+  programs.anki.enable = true;
 
-  services.swww.enable = true;
+  services.awww.enable = true;
   services.playerctld.enable = true;
   services.swayosd = {
     enable = true;

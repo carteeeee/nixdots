@@ -59,10 +59,12 @@
   };*/
 
   environment.systemPackages = with pkgs; [
-    xwayland-satellite
+    fontforge
     pwvucontrol
     swayosd
     vesktop
+    vlc
+    xwayland-satellite
 
     wine64
     wineWow64Packages.waylandFull

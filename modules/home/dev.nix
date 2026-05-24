@@ -20,6 +20,9 @@
       number = true;
       relativenumber = true;
       shiftwidth = 4;
+
+      splitright = true;
+      splitbelow = true;
     };
 
     globals.mapleader = " ";
@@ -40,10 +43,11 @@
 	  close_if_last_window = true;
 	};
       };
-      telescope.enable = true;
-      netman.enable = true;
       hex.enable = true;
+      netman.enable = true;
       nix.enable = true;
+      telescope.enable = true;
+      web-devicons.enable = true;
 
       lsp = {
         enable = true;
@@ -65,51 +69,30 @@
       };
     };
 
-    keymaps = [
-      {
-        key = "<leader>z";
-        action = "<C-o>";
-      }
-      {
-        key = "<leader>x";
-        action = "<C-i>";
-      }
-      {
-        key = "<leader>sf";
-        action = ":Telescope find_files<CR>";
-      }
-      {
-        key = "<leader>sw";
-        action = ":Telescope grep_string<CR>";
-      }
-      {
-        key = "<leader>sl";
-        action = ":Telescope live_grep<CR>";
-      }
-      {
-        key = "<leader>lr";
-        action = ":Telescope lsp_references<CR>";
-      }
-      {
-        key = "<leader>ld";
-        action = ":Telescope lsp_definitions<CR>";
-      }
-      {
-        key = "<leader>li";
-        action = ":Telescope lsp_implementations<CR>";
-      }
-      {
-        key = "<leader>bm";
-        action = "<cmd>make<CR>";
-      }
-      {
-        key = "<leader>bc";
-        action = "<cmd>cargo build<CR>";
-      }
-      {
-        key = "<leader>bC";
-        action = "<cmd>cargo build --release<CR>";
-      }
-    ];
+    keymaps = let
+      inherit (builtins) attrValues mapAttrs;
+    in attrValues (mapAttrs (name: value: {key = "<leader>" + name; action = value;}) {
+      q  = ":q<CR>";
+      ww = ":w<CR>";
+      wq = ":wqa<CR>";
+      ph = ":split<CR>";
+      pv = ":vs<CR>";
+      h  = ":wincmd h<CR>";
+      j  = ":wincmd j<CR>";
+      k  = ":wincmd k<CR>";
+      l  = ":wincmd l<CR>";
+      z  = "<C-o>";
+      x  = "<C-i>";
+      sf = ":Telescope find_files<CR>";
+      sw = ":Telescope grep_string<CR>";
+      sl = ":Telescope live_grep<CR>";
+      lr = ":Telescope lsp_references<CR>";
+      ld = ":Telescope lsp_definitions<CR>";
+      li = ":Telescope lsp_implementations<CR>";
+      bm = "<cmd>make<CR>";
+      bM = "<cmd>make clean<CR>";
+      bc = "<cmd>cargo build<CR>";
+      bC = "<cmd>cargo build --release<CR>";
+    });
   };
 }
