@@ -60,6 +60,7 @@
 
   environment.systemPackages = with pkgs; [
     fontforge-gtk
+    gimp
     pwvucontrol
     swayosd
     vesktop
