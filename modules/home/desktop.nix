@@ -3,14 +3,7 @@
 in {
   programs.fuzzel.enable = true;
   programs.swaylock.enable = true;
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        normal.family = "0xProto Nerd Font";
-      };
-    };
-  };
+  programs.alacritty.enable = true;
 
   programs.obs-studio.enable = true;
   programs.anki.enable = true;

@@ -7,12 +7,26 @@
   programs.niri.enable = true;
   programs.firefox.enable = true;
   
-  fonts.packages = with pkgs; [
-    nerd-fonts._0xproto
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
-  ];
+  fonts = {
+    packages = with pkgs; [
+      libertinus
+      maple-mono.NF-CN # ty thunder :3
+      nerd-fonts.symbols-only
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+    ];
+
+    fontconfig = {
+      enable = true;
+      useEmbeddedBitmaps = true;
+      defaultFonts = {
+        serif = ["Maple Mono NF CN"];
+        sansSerif = ["Maple Mono NF CN"];
+        monospace = ["Maple Mono NF CN" "Symbols Nerd Font"];
+        emoji = ["Noto Color Emoji"];
+      };
+    };
+  };
 
   services.pulseaudio.enable = lib.mkForce false;
 
@@ -59,6 +73,7 @@
   };*/
 
   environment.systemPackages = with pkgs; [
+    blender
     fontforge-gtk
     gimp
     pwvucontrol
