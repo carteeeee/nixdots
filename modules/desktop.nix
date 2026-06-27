@@ -76,6 +76,7 @@
     blender
     fontforge-gtk
     gimp
+    libreoffice
     pwvucontrol
     swayosd
     vesktop
