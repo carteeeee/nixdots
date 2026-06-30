@@ -1,4 +1,4 @@
-{inputs, pkgs, ...}: {
+{pkgs, ...}: {
   users.users.carter = {
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"];
@@ -17,12 +17,6 @@
         username = "carter";
         homeDirectory = "/home/${config.home.username}";
       };
-
-      imports = [
-	inputs.nixvim.homeModules.nixvim
-        inputs.catppuccin.homeModules.catppuccin
-        ./home
-      ];
     };
   };
 }

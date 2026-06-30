@@ -1,16 +1,21 @@
-{pkgs, ...}: {
+{inputs, pkgs, ...}: {
   imports = [
-    ./desktop.nix
-    ./shell.nix
-    ./home.nix
-    ./dev.nix
+    ./user.nix
+    ./desktop
+    ./dev
   ];
+
   config = {
     nix.settings = {
       experimental-features = ["nix-command" "flakes"];
       use-xdg-base-directories = true;
       allow-import-from-derivation = true;
     };
+
+    # ugh
+    nixpkgs.config.permittedInsecurePackages = [
+      "pnpm-10.29.2"
+    ];
 
     nixpkgs.config.allowUnfree = true;
     
@@ -21,9 +26,17 @@
     services.xserver.xkb.layout = "us";
 
     catppuccin.enable = true;
+    catppuccin.autoEnable = true;
     catppuccin.accent = "mauve";
+    home-manager.users.carter = {...}: {
+      imports = [
+        inputs.catppuccin.homeModules.catppuccin
+      ];
+      catppuccin.enable = true;
+      catppuccin.autoEnable = true;
+      catppuccin.accent = "mauve";
+    };
 
-    # doesn't work :(
     catppuccin.plymouth.enable = false;
     boot = {
       initrd.systemd.enable = true;

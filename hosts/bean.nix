@@ -3,6 +3,11 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   home-manager.sharedModules = [{home.stateVersion = "25.11";}];
 
+  meow.desktop = {
+    enable = true;
+    niri.enable = true;
+  };
+
   networking.hostName = "bean";
 
   hardware = {
