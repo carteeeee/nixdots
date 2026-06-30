@@ -1,4 +1,11 @@
-{inputs, pkgs, ...}: {
+{inputs, pkgs, ...}: let
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+    accent = "mauve";
+    cache.enable = true;
+  };
+in {
   imports = [
     ./user.nix
     ./interface
@@ -26,19 +33,14 @@
     i18n.defaultLocale = "en_US.UTF-8";
     services.xserver.xkb.layout = "us";
 
-    catppuccin.enable = true;
-    catppuccin.autoEnable = true;
-    catppuccin.accent = "mauve";
-    home-manager.users.carter = {...}: {
+    catppuccin = catppuccin // { plymouth.enable = false; };
+    home-manager.users.carter = {
       imports = [
         inputs.catppuccin.homeModules.catppuccin
       ];
-      catppuccin.enable = true;
-      catppuccin.autoEnable = true;
-      catppuccin.accent = "mauve";
+      inherit catppuccin;
     };
 
-    catppuccin.plymouth.enable = false;
     boot = {
       initrd.systemd.enable = true;
       initrd.verbose = false;

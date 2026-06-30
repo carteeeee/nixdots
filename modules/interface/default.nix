@@ -1,4 +1,4 @@
-{config, lib, ...}: let
+{config, pkgs, lib, ...}: let
   inherit (lib) mkEnableOption mkIf;
   config' = config.meow.interface;
 in {
@@ -20,5 +20,9 @@ in {
       enable = true;
       powerOnBoot = true;
     };
+
+    environment.systemPackages = mkIf config'.bluetooth.enable (with pkgs; [
+      bluetui
+    ]);
   };
 }

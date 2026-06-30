@@ -6,6 +6,7 @@
   meow = {
     desktop = {
       enable = true;
+      obs.enable = true;
       discord.enable = true;
       niri = {
         enable = true;
@@ -16,6 +17,10 @@
 
     interface = {
       printers.enable = true;
+    };
+
+    dev = {
+      wine.enable = true;
     };
   };
 

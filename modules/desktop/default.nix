@@ -1,6 +1,7 @@
 {config, pkgs, lib, ...}: let
   inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib.types) float;
+  config' = config.meow.desktop;
 in {
   imports = [
     ./niri.nix
@@ -11,6 +12,7 @@ in {
   options = {
     meow.desktop = {
       enable = mkEnableOption "enable gui stuff";
+      obs.enable = mkEnableOption "enable obs (multiple gb)";
 
       alacritty.fontSize = mkOption {
         type = float;
@@ -20,7 +22,7 @@ in {
     };
   };
 
-  config = mkIf config.meow.desktop.enable {
+  config = mkIf config'.enable {
     home-manager.users.carter = {...}: {
       programs.fuzzel.enable = true;
       programs.swaylock.enable = true;
@@ -28,11 +30,11 @@ in {
       programs.alacritty = {
         enable = true;
         settings = {
-          font.size = config.meow.desktop.alacritty.fontSize;
+          font.size = config'.alacritty.fontSize;
         };
       };
 
-      programs.obs-studio.enable = true;
+      programs.obs-studio.enable = config'.obs.enable;
       programs.anki.enable = true;
     };
 
@@ -89,9 +91,6 @@ in {
       swayosd
       vlc
       xwayland-satellite
-
-      wine64
-      wineWow64Packages.waylandFull
 
       (prismlauncher.override {
         jdks = [
