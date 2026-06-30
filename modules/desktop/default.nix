@@ -5,6 +5,7 @@ in {
   imports = [
     ./niri.nix
     ./firefox.nix
+    ./discord
   ];
 
   options = {
@@ -39,7 +40,18 @@ in {
       enable = true;
       wayland.enable = true;
     };
-    
+
+    services.pulseaudio.enable = lib.mkForce false;
+
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
     fonts = {
       packages = with pkgs; [
         libertinus
@@ -61,43 +73,6 @@ in {
       };
     };
 
-    services.pulseaudio.enable = lib.mkForce false;
-
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
-
-    services.printing = {
-      enable = true;
-      drivers = with pkgs; [
-        cups-filters
-        cups-browsed
-      ];
-    };
-
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
-
-    hardware.printers = {
-      ensurePrinters = [
-        {
-          name = "HP174C9E";
-          location = "home";
-          deviceUri = "ipp://192.168.1.173:631/ipp/print";
-          model = "everywhere";
-        }
-      ];
-      ensureDefaultPrinter = "HP174C9E";
-    };
-
     /*services.sunshine = {
       enable = true;
       autoStart = true;
@@ -112,7 +87,6 @@ in {
       libreoffice
       pwvucontrol
       swayosd
-      vesktop
       vlc
       xwayland-satellite
 
@@ -127,9 +101,5 @@ in {
         ];
       })
     ];
-
-    xdg.portal.config = {
-      common."org.freedesktop.impl.portal.OpenURI" = ["gtk"];
-    };
   };
 }

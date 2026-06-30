@@ -1,6 +1,7 @@
 {inputs, pkgs, ...}: {
   imports = [
     ./user.nix
+    ./interface
     ./desktop
     ./dev
   ];

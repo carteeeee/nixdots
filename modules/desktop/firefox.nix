@@ -53,9 +53,9 @@ in {
             "Wiktionary" =
               "https://en.wiktionary.org/wiki/Special:Search?search={searchTerms}";
             "Nixpkgs" =
-              "https://search.nixos.org/packages?search={searchTerms}";
+              "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
             "Nix Options" =
-              "https://search.nixos.org/options?search={searchTerms}";
+              "https://search.nixos.org/options?channel=unstable&query={searchTerms}";
           };
         };
 

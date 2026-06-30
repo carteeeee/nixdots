@@ -3,13 +3,22 @@
   nixpkgs.hostPlatform = "aarch64-linux";
   home-manager.sharedModules = [{home.stateVersion = "25.11";}];
 
-  meow.desktop = {
-    enable = true;
-    alacritty.fontSize = 10.5;
-    niri = {
+  meow = {
+    desktop = {
       enable = true;
-      monitor = "eDP-1";
-      scale = 1.65;
+      discord.enable = true;
+      alacritty.fontSize = 10.5;
+      niri = {
+        enable = true;
+        monitor = "eDP-1";
+        scale = 1.65;
+      };
+    };
+
+    interface = {
+      wifi.enable = true; # useless
+      bluetooth.enable = true; # useful
+      printers.enable = true;
     };
   };
 
@@ -31,6 +40,22 @@
     apple.touchBar = {
       enable = true;
       package = pkgs.tiny-dfr;
+      settings = {
+        EnablePixelShift = true;
+        MediaLayerDefault = true;
+        MediaLayerKeys = [
+          { Battery = "both";         Action = ["LeftMeta" "LeftAlt" "L"]; }
+          { Icon = "bolt";            Action = "Print"; }
+          { Icon = "brightness_low";  Action = "BrightnessDown"; }
+          { Icon = "brightness_high"; Action = "BrightnessUp"; }
+          { Icon = "play_pause";      Action = ["LeftMeta" "F7"]; }
+          { Icon = "volume_off";      Action = ["LeftMeta" "F8"]; }
+          { Icon = "fast_rewind";     Action = ["LeftMeta" "F9"]; }
+          { Icon = "fast_forward";    Action = ["LeftMeta" "F10"]; }
+          { Icon = "volume_down";     Action = ["LeftMeta" "F11"]; }
+          { Icon = "volume_up";       Action = ["LeftMeta" "F12"]; }
+        ];
+      };
     };
   };
 

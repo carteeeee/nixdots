@@ -21,6 +21,10 @@ in {
   };
 
   config = mkIf (config.meow.desktop.enable && config.meow.desktop.niri.enable) {
+    xdg.portal.config = {
+      common."org.freedesktop.impl.portal.OpenURI" = ["gtk"];
+    };
+
     programs.niri.enable = true;
 
     home-manager.users.carter = {...}: {
@@ -34,6 +38,7 @@ in {
       xdg.configFile."niri/config.kdl".text = let
         swayosdc = getExe' pkgs.swayosd "swayosd-client";
         playerctl = getExe pkgs.playerctl;
+        brightnessctl = getExe pkgs.brightnessctl;
         xwayland-satellite = getExe pkgs.xwayland-satellite;
         config' = config.meow.desktop.niri;
       in ''
@@ -103,13 +108,12 @@ in {
           Mod+F11   { spawn-sh "${swayosdc} --output-volume -3"; }
           Mod+F12   { spawn-sh "${swayosdc} --output-volume 3"; }
 
-          Print { screenshot; }
-          Ctrl+Print { screenshot-screen; }
-          Alt+Print { screenshot-window; }
+          XF86MonBrightnessDown { spawn-sh "${brightnessctl} s 10%-"; }
+          XF86MonBrightnessUp   { spawn-sh "${brightnessctl} s +10%"; }
 
-          Mod+F1 { screenshot; }
-          Mod+Ctrl+F1 {screenshot-screen;}
-          Mod+Alt+F1 {screenshot-window;}
+          Print      { screenshot; }
+          Ctrl+Print { screenshot-screen; }
+          Alt+Print  { screenshot-window; }
 
           // easy to press intentionally, but hard accidentally
           // (next is page down)
