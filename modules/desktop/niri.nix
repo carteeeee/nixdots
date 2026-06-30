@@ -50,7 +50,7 @@ in {
             dwt
             drag true
             natural-scroll
-            scroll-factor 0.5
+            scroll-factor 0.4
           }
 
           mouse {

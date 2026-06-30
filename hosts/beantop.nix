@@ -9,7 +9,7 @@
     niri = {
       enable = true;
       monitor = "eDP-1";
-      scale = 1.5;
+      scale = 1.65;
     };
   };
 
