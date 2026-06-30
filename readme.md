@@ -1,5 +1,5 @@
 # nixdots
 
-hi i'm a new nix user these are my nixdots
+these configs are lagrely made for myself, it's proabably not a good idea to use them yourself unless you happen to have the exact same setup i have.
 
-i'm going insane but nix is pretty cool tbh :3
+nix is super awesome ooo you want to try nix ooooo :3
